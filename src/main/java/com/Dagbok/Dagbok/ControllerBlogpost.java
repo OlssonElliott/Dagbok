@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ControllerBlogpost {
@@ -31,8 +30,9 @@ public class ControllerBlogpost {
     @GetMapping("/blogg/{id}")
     public String getBlogpost(@PathVariable Integer id, Model model) {
         Blogpost blogpost = new Blogpost();
-        blogpost = repositoryBlogpost.findById(id);
-        return new String();
+        blogpost = repositoryBlogpost.findById(id).orElse(null);
+        model.addAttribute("blogpost", blogpost);
+        return "post";
     }
 
 }

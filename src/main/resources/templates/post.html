@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/">Tillbaka</a>
+    <p th:text="'Blogginlägg nr: ' + ${blogpost.id}"></p>
+    <p th:text="${blogpost.date}"></p>
+    <h1 th:text="${blogpost.rubrik}"></h1>
+    <p th:text="${blogpost.text}"></p>
+</body>
+</html>
