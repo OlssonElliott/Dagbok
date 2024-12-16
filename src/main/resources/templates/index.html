@@ -6,6 +6,20 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>test test</h1>
+    <h1>Dagboken</h1>
+
+    <form method="post" th:action="@{/add}" th:object="${blogpost}">
+    <input type="rubrik" name="rubrik" placeholder="rubrik">
+    <input type="date" name="date">
+    <textarea name="text" placeholder="text"></textarea>
+    <input type="hidden" name="isHiddenInFuture" value="0">
+    <input type="submit" value="Skapa inlägg">
+    </form>
+    
+    <ul>
+        <li th:each="post : ${posts}">
+            <a th:href="@{/blogg/{id}(id=${post.id})}" th:text="${post.rubrik}"></a>
+        </li>
+    </ul>
 </body>
 </html>
