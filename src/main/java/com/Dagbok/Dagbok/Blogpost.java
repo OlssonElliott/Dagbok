@@ -17,7 +17,6 @@ public class Blogpost {
     private String rubrik;
     private String text;
     private LocalDate date;
-    private int isHiddenInFuture;
 
     public int getId() {
         return id;
@@ -49,13 +48,5 @@ public class Blogpost {
 
     public void setDate(LocalDate date) {
         this.date = date;
-    }
-
-    public int getIsHiddenInFuture() {
-        return isHiddenInFuture;
-    }
-
-    public void setIsHiddenInFuture(int isHiddenInFuture) {
-        this.isHiddenInFuture = isHiddenInFuture;
     }
 }

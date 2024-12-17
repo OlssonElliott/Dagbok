@@ -4,19 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="/script.js"></script>
 </head>
 <body>
-    <h1>Dagboken</h1>
+    <h1>
+        <a href="/">Dagboken</a>
+    </h1>
 
     <form method="post" th:action="@{/add}" th:object="${blogpost}">
     <input type="rubrik" name="rubrik" placeholder="rubrik">
+    <br>
     <input type="date" name="date">
+    <br>
     <textarea name="text" placeholder="text"></textarea>
+    <br>
     <input type="hidden" name="isHiddenInFuture" value="0">
+    <br>
     <input type="submit" value="Skapa inlägg">
     </form>
+
+    <h1>Filtrera efter tid:</h1>
     
+    <form method="get" th:action="@{/filter}">
+        <input type="date" name="from">
+        <input type="date" name="to">
+        <br>
+        <input type="submit" value="Filtrera inlägg">
+    </form>
+    <h1>Dagboksinlägg:</h1>
     <ul>
         <li th:each="post : ${posts}">
             <a th:href="@{/blogg/{id}(id=${post.id})}" th:text="${post.rubrik}"></a>

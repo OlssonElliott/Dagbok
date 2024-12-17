@@ -1,6 +1,9 @@
 package com.Dagbok.Dagbok;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,13 +20,19 @@ public class ControllerBlogpost {
 
     @GetMapping("/") // home
     public String getIndex(Model model) {
-        model.addAttribute("posts", repositoryBlogpost.findAll());
+        model.addAttribute("posts", repositoryBlogpost.notFutureDate(LocalDate.now()));
         return "index";
     }
 
     @PostMapping("/add") // lägg till post
     public String addPost(@ModelAttribute Blogpost blogpost) {
-        repositoryBlogpost.save(blogpost);
+        if (blogpost.getDate() == null) {
+            blogpost.setDate(LocalDate.now());
+        }
+        if (blogpost.getRubrik() != "" && blogpost.getText() != "") {
+            System.out.println(blogpost.getText());
+            repositoryBlogpost.save(blogpost);
+        }
         return "redirect:/";
     }
 
@@ -50,6 +59,21 @@ public class ControllerBlogpost {
             repositoryBlogpost.save(oldPost);
         }
         return "redirect:/blogg/" + id;
+    }
+
+    @GetMapping("/filter")
+    public String getMethodName(Model model,
+            @RequestParam(value = "from", required = false) LocalDate from, // sidan kraschade vid null innan.
+            @RequestParam(value = "to", required = false) LocalDate to) {
+        if (from == null) {
+            from = LocalDate.now();
+        }
+        if (to == null) {
+            to = LocalDate.now();
+        }
+        model.addAttribute("posts", repositoryBlogpost.filteredDates(from, to));
+
+        return "index";
     }
 
 }
