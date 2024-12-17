@@ -4,12 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="/script.js" th:inline="none" defer></script>
 </head>
 <body>
-    <a href="/">Tillbaka</a>
+    <form method="get" action="/">
+        <input type="submit" value="Gå tillbaka">
+    </form>
+
+    <form method="get" th:action="@{/delete/{id}(id=${blogpost.id})}">
+        <input type="submit" value="Ta bort inlägg">
+    </form>
+
+    <button id="editBtn">Redigera inlägg</button>
+
     <p th:text="'Blogginlägg nr: ' + ${blogpost.id}"></p>
     <p th:text="${blogpost.date}"></p>
-    <h1 th:text="${blogpost.rubrik}"></h1>
-    <p th:text="${blogpost.text}"></p>
+
+    <h1 id="rubrik" th:text="${blogpost.rubrik}"></h1>
+    <p id="text" th:text="${blogpost.text}"></p>
+
+    <form id="form" method="post" th:action="@{/edit/{id}(id=${blogpost.id})}" style="display: none;">
+        <textarea id="editRubrik"></textarea>
+        <br>
+        <textarea id="editText"></textarea>
+        <br>
+        <input type="submit" value="Spara">
+    </form>
+    
+
 </body>
 </html>
