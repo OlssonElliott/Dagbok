@@ -10,6 +10,7 @@ let inputRubrik = document.getElementById("editRubrik");
 if (inputRubrik) {console.log("inputRubrik kopplad");}
 let inputText = document.getElementById("editText");
 if (inputText) {console.log("inputText kopplad");}
+const currentDate = document.getElementById("editDate");
 
 editBtn.addEventListener("click", () => {
     inputRubrik.value = pTaggRubrik.textContent;

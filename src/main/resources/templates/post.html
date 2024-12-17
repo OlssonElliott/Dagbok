@@ -23,10 +23,12 @@
     <h1 id="rubrik" th:text="${blogpost.rubrik}"></h1>
     <p id="text" th:text="${blogpost.text}"></p>
 
-    <form id="form" method="post" th:action="@{/edit/{id}(id=${blogpost.id})}" style="display: none;">
+    <form id="form" method="post" th:object="${blogpost}" th:action="@{/edit/{id}(id=${blogpost.id})}" style="display: none;">
         <textarea id="editRubrik" name="rubrik"></textarea>
         <br>
         <textarea id="editText" name="text"></textarea>
+        <br>
+        <input id="editDate" type="date" name="date" th:value="*{date}">
         <br>
         <input type="submit" value="Spara">
     </form>

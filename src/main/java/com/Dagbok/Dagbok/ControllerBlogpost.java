@@ -56,6 +56,7 @@ public class ControllerBlogpost {
         if (oldPost != null) {
             oldPost.setRubrik(updatedBlogpost.getRubrik());
             oldPost.setText(updatedBlogpost.getText());
+            oldPost.setDate(updatedBlogpost.getDate());
             repositoryBlogpost.save(oldPost);
         }
         return "redirect:/blogg/" + id;
