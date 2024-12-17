@@ -15,11 +15,22 @@
         <input type="submit" value="Ta bort inlägg">
     </form>
 
+    <button id="editBtn">Redigera inlägg</button>
 
-    <a href="">Redigera inlägg</a>
     <p th:text="'Blogginlägg nr: ' + ${blogpost.id}"></p>
     <p th:text="${blogpost.date}"></p>
-    <h1 id="edit" th:text="${blogpost.rubrik}"></h1>
-    <p id="edit" th:text="${blogpost.text}"></p>
+
+    <h1 id="rubrik" th:text="${blogpost.rubrik}"></h1>
+    <p id="text" th:text="${blogpost.text}"></p>
+
+    <form id="form" method="post" th:action="@{/edit/{id}(id=${blogpost.id})}" style="display: none;">
+        <textarea id="editRubrik"></textarea>
+        <br>
+        <textarea id="editText"></textarea>
+        <br>
+        <input type="submit" value="Spara">
+    </form>
+    
+
 </body>
 </html>

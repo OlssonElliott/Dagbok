@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
 
 @Controller
 public class ControllerBlogpost {
@@ -28,7 +31,7 @@ public class ControllerBlogpost {
     }
 
     @GetMapping("/blogg/{id}")
-    public String getBlogpost(@PathVariable Integer id, Model model) {
+    public String getPost(@PathVariable Integer id, Model model) {
         Blogpost blogpost = new Blogpost();
         blogpost = repositoryBlogpost.findById(id).orElse(null);
         model.addAttribute("blogpost", blogpost);
@@ -36,9 +39,15 @@ public class ControllerBlogpost {
     }
 
     @GetMapping("/delete/{id}")
-    public String postMethodName(@PathVariable Integer id) {
+    public String deletePost(@PathVariable Integer id) {
         repositoryBlogpost.deleteById(id);
         return "redirect:/";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editPost(@PathVariable Integer id) {
+        System.out.println("länkad rätt");
+        return "redirect:/blogg/" + id;
     }
 
 }
