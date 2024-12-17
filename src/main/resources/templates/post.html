@@ -24,9 +24,9 @@
     <p id="text" th:text="${blogpost.text}"></p>
 
     <form id="form" method="post" th:action="@{/edit/{id}(id=${blogpost.id})}" style="display: none;">
-        <textarea id="editRubrik"></textarea>
+        <textarea id="editRubrik" name="rubrik"></textarea>
         <br>
-        <textarea id="editText"></textarea>
+        <textarea id="editText" name="text"></textarea>
         <br>
         <input type="submit" value="Spara">
     </form>
