@@ -35,4 +35,10 @@ public class ControllerBlogpost {
         return "post";
     }
 
+    @GetMapping("/delete/{id}")
+    public String postMethodName(@PathVariable Integer id) {
+        repositoryBlogpost.deleteById(id);
+        return "redirect:/";
+    }
+
 }
