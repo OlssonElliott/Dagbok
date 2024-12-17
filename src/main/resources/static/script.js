@@ -1,9 +1,15 @@
 const inputForm = document.getElementById("form");
+if (inputForm) {console.log("form kopplad");}
 const editBtn = document.getElementById("editBtn");
+if (editBtn) {console.log("btn kopplad");}
 const pTaggRubrik = document.getElementById("rubrik");
+if (pTaggRubrik) {console.log("ptaggRubrik kopplad");}
 const pTaggText = document.getElementById("text");
+if (pTaggText) {console.log("ptaggText kopplad");}
 let inputRubrik = document.getElementById("editRubrik");
+if (inputRubrik) {console.log("inputRubrik kopplad");}
 let inputText = document.getElementById("editText");
+if (inputText) {console.log("inputText kopplad");}
 
 editBtn.addEventListener("click", () => {
     inputRubrik.value = pTaggRubrik.textContent;
