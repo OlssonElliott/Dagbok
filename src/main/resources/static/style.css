@@ -1,0 +1,102 @@
+body{
+    background-color:#1F2833;
+}
+
+header{
+border-bottom: 2px solid black;
+padding-bottom: 0px;
+margin-bottom: 50px;
+
+}
+
+
+#rubrik,
+.header {
+    margin: 0 0 20px 0;
+    color:lightskyblue;
+    text-shadow:
+    -0.5px -0.5px 0 black,  
+     0.5px -0.5px 0 black,
+    -0.5px  0.5px 0 black,
+     0.5px  0.5px 0 black;
+}
+
+#mainHeader{
+    display: flex;
+    justify-content: center;
+    color:lightskyblue;
+    text-shadow:
+    -0.5px -0.5px 0 black,  
+     0.5px -0.5px 0 black,
+    -0.5px  0.5px 0 black,
+     0.5px  0.5px 0 black;
+}
+
+
+
+button,
+input{
+    background-color: #45A29E;
+    color: black;
+    border: 2px solid black;
+}
+
+textarea::placeholder,
+input::placeholder{
+    color: black
+}
+
+textarea{
+    min-width: 300px;
+    min-height: 200px;
+    background-color: #45A29E;
+    border: 2px solid black;
+}
+
+p{
+    color:#45A29E;
+}
+
+a{
+    color: #45A29E;
+}
+
+#topContainer{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px 100px;
+}
+
+
+
+#topMiddle,
+#topLeft,
+#topRight{
+flex: 1;
+text-align: center;
+}
+
+
+
+ul{
+    list-style-type:none;
+    margin-top: 20px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+}
+
+li{
+    margin-left: 120px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+}
+
+#spanDate{
+    color: lightskyblue;
+    margin-left: 30px;
+}

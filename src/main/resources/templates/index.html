@@ -4,37 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <h1>
-        <a href="/">Dagboken</a>
-    </h1>
+    <header>
+        <h1>
+            <a id="mainHeader" href="/">Dagboken</a>
+        </h1>
+    </header>
+    <div id="topContainer">
+        
+        <div id="topLeft"><form method="post" th:action="@{/add}" th:object="${blogpost}">
+            <h1 class="header">Skapa nytt inlägg</h1>
+            <input id="postFormRubrik" type="text" name="rubrik" placeholder="Rubrik">
+            <br>
+            <input id="postFormDate" type="date" name="date">
+            <br>
+            <textarea id="postFormText" name="text" placeholder="Gudomliga insikter.."></textarea>
+            <br>
+            <input id="postFormSubmit" type="submit" value="Skapa inlägg">
+            </form>
+        </div>
 
-    <form method="post" th:action="@{/add}" th:object="${blogpost}">
-    <input type="rubrik" name="rubrik" placeholder="rubrik">
-    <br>
-    <input type="date" name="date">
-    <br>
-    <textarea name="text" placeholder="text"></textarea>
-    <br>
-    <input type="hidden" name="isHiddenInFuture" value="0">
-    <br>
-    <input type="submit" value="Skapa inlägg">
-    </form>
+        <div id="topMiddle">
+            <h1 class="header">Mina inlägg</h1>
+                <ul>
+                    <li th:each="post : ${posts}">
+                        <a th:href="@{/blogg/{id}(id=${post.id})}" th:text="${post.rubrik}"></a>
+                        <span id="spanDate" th:text="' - ' +${post.date}"></span>
+                    </li>
+                </ul>
+        </div>
 
-    <h1>Filtrera efter tid:</h1>
+        <div id="topRight">
+            <h1 class="header">Filtrera efter tid</h1>
     
-    <form method="get" th:action="@{/filter}">
-        <input type="date" name="from">
-        <input type="date" name="to">
-        <br>
-        <input type="submit" value="Filtrera inlägg">
-    </form>
-    <h1>Dagboksinlägg:</h1>
-    <ul>
-        <li th:each="post : ${posts}">
-            <a th:href="@{/blogg/{id}(id=${post.id})}" th:text="${post.rubrik}"></a>
-        </li>
-    </ul>
+            <form method="get" th:action="@{/filter}">
+                <input type="date" name="from">
+                <input type="date" name="to">
+                <br>
+                <input type="submit" value="Filtrera inlägg">
+            </form>
+        </div>
+    </div>
+    
+
+ 
+
+    
 </body>
 </html>
