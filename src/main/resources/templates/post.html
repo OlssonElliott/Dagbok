@@ -7,7 +7,9 @@
     <link rel="stylesheet" href="/style.css">
     <script src="/script.js" th:inline="none" defer></script>
 </head>
+
 <body>
+    <!-- tre översta knappar -->
     <form method="get" action="/">
         <input type="submit" value="Gå tillbaka">
     </form>
@@ -18,12 +20,15 @@
 
     <button id="editBtn">Redigera inlägg</button>
 
+    <!--skriver ut id och datum -->
     <p th:text="'Blogginlägg nr: ' + ${blogpost.id}"></p>
     <p th:text="${blogpost.date}"></p>
-
+    
+    <!--skriver ut innehåll, rubrik/text -->
     <h1 id="rubrik" th:text="${blogpost.rubrik}"></h1>
     <p id="text" th:text="${blogpost.text}"></p>
 
+    <!--dolda textareas som visas/döljs med editBtn genom javascrips -->
     <form id="form" method="post" th:object="${blogpost}" th:action="@{/edit/{id}(id=${blogpost.id})}" style="display: none;">
         <textarea id="editRubrik" name="rubrik"></textarea>
         <br>

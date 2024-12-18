@@ -10,11 +10,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RepositoryBlogpost extends CrudRepository<Blogpost, Integer> {
-    // filtrerar bort framtida inlägg
-    @Query("SELECT b FROM Blogpost b WHERE b.date <= :today")
+
+    @Query("SELECT b FROM Blogpost b WHERE b.date <= :today") // lista utan framtida inlägg
     List<Blogpost> notFutureDate(@Param("today") LocalDate today);
 
-    @Query("SELECT b FROM Blogpost b WHERE b.date BETWEEN :from AND :to")
+    @Query("SELECT b FROM Blogpost b WHERE b.date BETWEEN :from AND :to") // lista med inlägg mellan två datum
     List<Blogpost> filteredDates(@Param("from") LocalDate from, @Param("to") LocalDate to);
 
 }
