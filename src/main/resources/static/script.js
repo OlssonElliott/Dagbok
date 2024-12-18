@@ -9,7 +9,7 @@ if (pTaggText) {console.log("ptaggText kopplad");}
 let inputRubrik = document.getElementById("editRubrik");
 if (inputRubrik) {console.log("inputRubrik kopplad");}
 let inputText = document.getElementById("editText");
-if (inputText) {console.log("inputText kopplad");}
+if (inputText) {console.log("inputText kopplad");} // ta bort alla if på slutet
 const currentDate = document.getElementById("editDate");
 
 editBtn.addEventListener("click", () => {

@@ -3,7 +3,6 @@ package com.Dagbok.Dagbok;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +17,7 @@ public class ControllerBlogpost {
     @Autowired
     RepositoryBlogpost repositoryBlogpost;
 
-    @GetMapping("/") // home
+    @GetMapping("/") // gå till main page
     public String getIndex(Model model) {
         model.addAttribute("posts", repositoryBlogpost.notFutureDate(LocalDate.now()));
         return "index";
@@ -62,19 +61,20 @@ public class ControllerBlogpost {
         return "redirect:/blogg/" + id;
     }
 
-    @GetMapping("/filter")
+    @GetMapping("/filter") // filtrera efter datum
     public String getMethodName(Model model,
-            @RequestParam(value = "from", required = false) LocalDate from, // sidan kraschade vid null innan.
+            // required = false eftersom sidan kraschar vid null.
+            @RequestParam(value = "from", required = false) LocalDate from,
             @RequestParam(value = "to", required = false) LocalDate to) {
+        // felhantering vid null
         if (from == null) {
             from = LocalDate.now();
         }
         if (to == null) {
             to = LocalDate.now();
         }
-        model.addAttribute("posts", repositoryBlogpost.filteredDates(from, to));
 
+        model.addAttribute("posts", repositoryBlogpost.filteredDates(from, to));
         return "index";
     }
-
 }
