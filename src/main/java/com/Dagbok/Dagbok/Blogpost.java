@@ -18,14 +18,6 @@ public class Blogpost {
     private String text;
     private LocalDate date;
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getRubrik() {
         return rubrik;
     }
@@ -48,5 +40,9 @@ public class Blogpost {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public int getId() {
+        return id;
     }
 }

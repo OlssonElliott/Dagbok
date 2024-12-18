@@ -12,8 +12,9 @@
             <a id="mainHeader" href="/">Dagboken</a>
         </h1>
     </header>
+    <!--huvud container för css -->
     <div id="topContainer">
-        
+        <!--lägg till nytt objekt -->
         <div id="topLeft"><form method="post" th:action="@{/add}" th:object="${blogpost}">
             <h1 class="header">Skapa nytt inlägg</h1>
             <input id="postFormRubrik" type="text" name="rubrik" placeholder="Rubrik">
@@ -26,6 +27,7 @@
             </form>
         </div>
 
+        <!--skriv ut alla inlägg som länkar -->
         <div id="topMiddle">
             <h1 class="header">Mina inlägg</h1>
                 <ul>
@@ -36,6 +38,7 @@
                 </ul>
         </div>
 
+        <!-- sortera datum på inlägg -->
         <div id="topRight">
             <h1 class="header">Filtrera efter tid</h1>
     

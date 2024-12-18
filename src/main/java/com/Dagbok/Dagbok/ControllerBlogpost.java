@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class ControllerBlogpost {
 
-    @Autowired
+    @Autowired // länkar RepositoryBlogpost
     RepositoryBlogpost repositoryBlogpost;
 
     @GetMapping("/") // gå till main page
@@ -25,10 +25,10 @@ public class ControllerBlogpost {
 
     @PostMapping("/add") // lägg till post
     public String addPost(@ModelAttribute Blogpost blogpost) {
-        if (blogpost.getDate() == null) {
+        if (blogpost.getDate() == null) { // felhantering tid
             blogpost.setDate(LocalDate.now());
         }
-        if (blogpost.getRubrik() != "" && blogpost.getText() != "") {
+        if (blogpost.getRubrik() != "" && blogpost.getText() != "") { // felhantering tomt inlägg
             System.out.println(blogpost.getText());
             repositoryBlogpost.save(blogpost);
         }
@@ -43,7 +43,7 @@ public class ControllerBlogpost {
         return "post";
     }
 
-    @GetMapping("/delete/{id}") // ta bort bost
+    @GetMapping("/delete/{id}") // ta bort post
     public String deletePost(@PathVariable Integer id) {
         repositoryBlogpost.deleteById(id);
         return "redirect:/";
@@ -63,7 +63,7 @@ public class ControllerBlogpost {
 
     @GetMapping("/filter") // filtrera efter datum
     public String getMethodName(Model model,
-            // required = false eftersom sidan kraschar vid null.
+            // required = false eftersom sidan kraschar när thymeleaf skickar tillbaka null.
             @RequestParam(value = "from", required = false) LocalDate from,
             @RequestParam(value = "to", required = false) LocalDate to) {
         // felhantering vid null
@@ -73,8 +73,7 @@ public class ControllerBlogpost {
         if (to == null) {
             to = LocalDate.now();
         }
-
         model.addAttribute("posts", repositoryBlogpost.filteredDates(from, to));
-        return "index";
+        return "index"; // index pga ny lista
     }
 }
